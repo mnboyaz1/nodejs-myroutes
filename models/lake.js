@@ -3,7 +3,7 @@ var model = function(db) {
 	self.table = 'lakes';
 	
 	self.find = function(id, callback) {
-		// Execute SQL Query
+		// Execute SQL Query to retrieve data for the client
 		var query='select * from ?? where id = ? limit 1 ';
 		var params=[ 
 			self.table,

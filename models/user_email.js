@@ -24,7 +24,6 @@ var model = function(db) {
 	self.post = function(data,callback) {
 		// Execute SQL Query
 		var query = "insert into users_emails set ?";
-		//console.log(db.format(query,params))
 		db.query(query,data,function(err, data){
 		
 			if (err)
@@ -46,7 +45,6 @@ var model = function(db) {
 			data,
 			userId
 		]
-		console.log(db.format(query,params))
 		db.query(query,params,function(err, data){
 			if (err)
 				callback({status:400, message:{error:err.message}})
@@ -67,7 +65,6 @@ var model = function(db) {
 			data,
 			userId
 		]
-		console.log(db.format(query,params))
 		db.query(query,params,function(err,data){
 			if (err)
 				callback({status:400, message:{error:err.message}})
@@ -87,14 +84,12 @@ var model = function(db) {
 		var params=[
 			userId
 		]
-		console.log(db.format(query,params))
 		db.query(query,params,function(err,data){
 			if (err)
 				callback({status:400, message:{error:err.message}})
 			else if (data.insertId == undefined)
 				callback({status:400, message:{error:"MYSQL ERROR"}})
 			else {
-			console.log(userId)
 				callback({status:202,message:"Email Deleted"})
 			}
 		})

@@ -1,4 +1,4 @@
-//Sets up connection to Mysql 
+//Sets up connection to Mysql , will not leave available in production.
 module.exports = {
 	host	: 'localhost',
 	user	: 'Michael',

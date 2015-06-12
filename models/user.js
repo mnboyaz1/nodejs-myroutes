@@ -96,8 +96,6 @@ var model = function(db) {
 				callback({status:400, message:{error:"MYSQL ERROR"}})
 			else {
 				callback({status:202,message:"User Deleted"})
-				//console.log(data)
-				//callback({status:404,message:"Not Found"})
 			}
 		})
 	}

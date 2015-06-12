@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var db = require(__dirname+'/helpers/db');
+
+//create models and controllers
 var models = {
 	user:require(__dirname+'/models/user'),
 	//new
