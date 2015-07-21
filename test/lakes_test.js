@@ -4,9 +4,9 @@ var expect = require ('expect.js');
 var Chance = require('chance');
 	chance = new Chance();
 var server;
-var newPerson = {
-	firstname: chance.first(),
-	lastname: chance.last()
+var newLake = {
+	title: chance.city(),
+	description: chance.paragraph({sentences: 2})
 	};
 var host = 'http://localhost', port = 3000;
 
@@ -17,54 +17,53 @@ it('start node server.', function(done) {
 	})
 });
 
-it('Add New User.', function(done) {
-	var person = newPerson;
+it('Add New Lake.', function(done) {
+	var lake = newLake;
 	request
-	.post(host+':'+port+'/users')
+	.post(host+':'+port+'/lakes')
 	.set('Content-type','application/json')
-	.send(person)
+	.send(lake)
 	.end(function(err,res) {
-		console.log(person);
+		console.log(lake);
 		expect(res.type).to.be('application/json');
 		expect(res.body).to.have.property('createdat');
-		expect(res.body.lastname).to.equal(person.lastname);
-		expect(res.body.firstname).to.equal(person.firstname);
+		expect(res.body.title).to.equal(lake.title);
 		done();
 	});
 	
 });
 
-it('Put Change User.', function(done) {
-	var person = {
-		firstname: chance.first(),
-		lastname: chance.last(),
+it('Put Change Lake.', function(done) {
+	var lake = {
+	title: chance.city(),
+	description: chance.paragraph({sentences: 2})
 
 	};
 	request
-	.put(host+':'+port+'/users/2')
+	.put(host+':'+port+'/lakes/1')
 	.set('Content-type','application/json')
-	.send(person)
+	.send(lake)
 	.end(function(err,res) {
 		expect(res.type).to.be('application/json');
-		expect(res.body.id).to.equal(2);
-		expect(res.body.lastname).to.equal(person.lastname);
-		expect(res.body.firstname).to.equal(person.firstname);
+		expect(res.body.id).to.equal(1);
+		expect(res.body.title).to.equal(lake.title);
+		expect(res.body.description).to.equal(lake.description);
 		done();
 	});
 	
 });
 
-it('Delete User.', function(done) {
-	var person = {
-		id: 3,
+it('Delete Lake.', function(done) {
+	var lake = {
+		id: 4,
 	};
 	request
-	.del(host+':'+port+'/users/3')
+	.del(host+':'+port+'/lakes/4')
 	.set('Content-type','application/json')
-	.send(person)
+	.send(lake)
 	.end(function(err,res) {
 		expect(res.type).to.not.be('application/json');
-		expect(person.id).to.equal(3);
+		expect(lake.id).to.equal(4);
 		done();
 	});
 	

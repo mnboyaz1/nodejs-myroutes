@@ -4,9 +4,8 @@ var expect = require ('expect.js');
 var Chance = require('chance');
 	chance = new Chance();
 var server;
-var newPerson = {
-	firstname: chance.first(),
-	lastname: chance.last()
+var newWeatherCondition = {
+	weather: chance.paragraph({sentences: 2})
 	};
 var host = 'http://localhost', port = 3000;
 
@@ -17,54 +16,54 @@ it('start node server.', function(done) {
 	})
 });
 
-it('Add New User.', function(done) {
-	var person = newPerson;
+it('Add New Weather Conditions.', function(done) {
+	var weatherCondition = {
+		weather: chance.paragraph({sentences: 2}),
+		lakeid: 2,
+	};
 	request
-	.post(host+':'+port+'/users')
+	.post(host+':'+port+'/weather_conditions')
 	.set('Content-type','application/json')
-	.send(person)
+	.send(weatherCondition)
 	.end(function(err,res) {
-		console.log(person);
+		console.log(weatherCondition);
 		expect(res.type).to.be('application/json');
 		expect(res.body).to.have.property('createdat');
-		expect(res.body.lastname).to.equal(person.lastname);
-		expect(res.body.firstname).to.equal(person.firstname);
+		expect(res.body.weather).to.equal(weatherCondition.weather);
 		done();
 	});
 	
 });
 
-it('Put Change User.', function(done) {
-	var person = {
-		firstname: chance.first(),
-		lastname: chance.last(),
-
+it('Put Change Weather Conditions.', function(done) {
+	var weatherCondition = {
+		weather: chance.paragraph({sentences: 2}),
+		lakeid: 3,
 	};
 	request
-	.put(host+':'+port+'/users/2')
+	.put(host+':'+port+'/weather_conditions/2')
 	.set('Content-type','application/json')
-	.send(person)
+	.send(weatherCondition)
 	.end(function(err,res) {
 		expect(res.type).to.be('application/json');
 		expect(res.body.id).to.equal(2);
-		expect(res.body.lastname).to.equal(person.lastname);
-		expect(res.body.firstname).to.equal(person.firstname);
+		expect(res.body.weather).to.equal(weatherCondition.weather);
 		done();
 	});
 	
 });
 
-it('Delete User.', function(done) {
-	var person = {
-		id: 3,
+it('Delete Weather Conditions.', function(done) {
+	var weatherCondition = {
+		id: 11,
 	};
 	request
-	.del(host+':'+port+'/users/3')
+	.del(host+':'+port+'/weather_conditions/11')
 	.set('Content-type','application/json')
-	.send(person)
+	.send(weatherCondition)
 	.end(function(err,res) {
 		expect(res.type).to.not.be('application/json');
-		expect(person.id).to.equal(3);
+		expect(weatherCondition.id).to.equal(11);
 		done();
 	});
 	

@@ -13,7 +13,7 @@ it('start node server.', function(done) {
 
 it('Put User ID.', function(done) {
 	var person = {
-		userID : 4,
+		userID : 5,
 		first:'John',
 		last:'Smith',
 		email:'john@smith.com'
@@ -23,7 +23,7 @@ it('Put User ID.', function(done) {
 	.send(person).end(function(err,res) {
 	console.log(res.body.userID);
 		expect(res.type).to.be('application/json');
-		expect(res.body).to.have.property('created');
+		expect(res.body).to.have.property('createdat');
 		expect(res.body.userID).to.equal(person.userID);
 		expect(res.body.email).to.not.equal(person.email);
 		done();

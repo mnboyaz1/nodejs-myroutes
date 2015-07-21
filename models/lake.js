@@ -20,5 +20,62 @@ var model = function(db) {
 		})
 			
 	}
+	
+	self.post = function(data,callback) {
+		// Execute SQL Query
+		var query = "insert into lakes set ?";
+	
+		db.query(query,data,function(err, data){
+			if (err)
+				callback({status:400, message:{error:err.message}})
+			else if (data.insertId == undefined)
+				callback({status:400, message:{error:"MYSQL ERROR"}})
+			else {
+				self.find(data.insertId,function(response) {
+					callback(response)
+				})
+			}
+		})
+	}
+	
+	self.put = function(lakeId,data,callback){
+		//Execute sql query
+		var query = 'update lakes set ? where id = ?';
+		var params=[
+			data,
+			lakeId
+		]
+
+		db.query(query,params,function(err,data){
+			if (err)
+				callback({status:400, message:{error:err.message}})
+			else if (data.insertId == undefined)
+				callback({status:400, message:{error:"MYSQL ERROR"}})
+			else {
+				self.find(lakeId,function(response){
+					callback(response)
+				})
+			}	
+		})
+	}
+	
+	self.delete = function(lakeId,data,callback){
+		//Execute sql query
+		
+		var query = 'delete from lakes where id = ? limit 1';
+		var params=[
+			lakeId,
+		]
+		console.log(db.format(query,params))
+		db.query(query,params,function(err,data){
+			if (err)
+				callback({status:400, message:{error:err.message}})
+			else if (data.insertId == undefined)
+				callback({status:400, message:{error:"MYSQL ERROR"}})
+			else {
+				callback({status:202,message:"Lake Deleted"})
+			}
+		})
+	}
 }
 module.exports = model;

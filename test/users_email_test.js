@@ -17,7 +17,7 @@ it('start node server.', function(done) {
 it('Add New email.', function(done) {
 	var email = {
 		email: chance.email(),
-		usersid: 10,
+		usersid: 2,
 	};
 	request
 	.post(host+':'+port+'/user_emails')
@@ -35,15 +35,16 @@ it('Add New email.', function(done) {
 it('Put Change User Email.', function(done) {
 	var email = {
 		email: chance.email(),
-		usersid: 10,
+		//usersid: 13,
 	};
 	request
-	.put(host+':'+port+'/user_emails/1')
+	.put(host+':'+port+'/user_emails/3')
 	.set('Content-type','application/json')
 	.send(email)
 	.end(function(err,res) {
 		expect(res.type).to.be('application/json');
-		expect(10).to.equal(email.usersid);
+		//expect(13).to.equal(email.usersid);
+		expect(res.body.id).to.equal(3);
 		expect(res.body.email).to.equal(email.email);
 		done();
 	});
@@ -51,15 +52,15 @@ it('Put Change User Email.', function(done) {
 
 it('Delete User email.', function(done) {
 	var email = {
-		usersid: 18,
+		id: 4,
 	};
 	request
-	.del(host+':'+port+'/user_emails/19')
+	.del(host+':'+port+'/user_emails/4')
 	.set('Content-type','application/json')
 	.send(email)
 	.end(function(err,res) {
 		expect(res.type).to.not.be('application/json');
-		expect(email.usersid).to.equal(18);
+		expect(email.id).to.equal(4);
 		done();
 	});
 	

@@ -8,22 +8,31 @@ var db = require(__dirname+'/helpers/db');
 
 //create models and controllers
 var models = {
+	//home
+	//homePage:require(__dirname+'/web/models/homePage'),
+	
 	user:require(__dirname+'/models/user'),
-	//new
 	lake:require(__dirname+'/models/lake'),
 	user_email:require(__dirname+'/models/user_email'),
 	weather_condition:require(__dirname+'/models/weather_condition'),
 }
 
 var controllers = {
+	//home
+	homePages:require(__dirname+'/web/controllers/homePages'),
+	
 	users:require(__dirname+'/controllers/users'),
-	user_emails:require(__dirname+'/controllers/user_emails')
+	user_emails:require(__dirname+'/controllers/user_emails'),
+	lakes:require(__dirname+'/controllers/lakes'),
+	weather_conditions:require(__dirname+'/controllers/weather_conditions')
 	
 }
 
 // Initialize App & Models
 var app = express();
 app.models = {
+	//homePage:new web.models.homePage(db),
+	
 	user:new models.user(db),
 	lake:new models.lake(db),
 	user_email:new models.user_email(db),
@@ -31,13 +40,18 @@ app.models = {
 }
 
 app.controllers = {
+	homePages:new web.controllers.homePages(app, express),
+	
 	users:new controllers.users(app, express),
-	user_emails:new controllers.user_emails(app, express)
+	user_emails:new controllers.user_emails(app, express),
+	lakes:new controllers.lakes(app, express),
+	weather_conditions:new controllers.weather_conditions(app, express)
 }
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
