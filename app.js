@@ -1,15 +1,19 @@
 var express = require('express');
+var ejs = require('ejs');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
 var db = require(__dirname+'/helpers/db');
+//var http = require('http');
+var exphbs = require('express3-handlebars');
 
 //create models and controllers
 var models = {
 	//home
-	//homePage:require(__dirname+'/web/models/homePage'),
+	//homePage:require(__dirname+''),
 	
 	user:require(__dirname+'/models/user'),
 	lake:require(__dirname+'/models/lake'),
@@ -30,8 +34,10 @@ var controllers = {
 
 // Initialize App & Models
 var app = express();
+var hbs = exphbs.create({ /* config */});
+
 app.models = {
-	//homePage:new web.models.homePage(db),
+	//homePage:new (db),
 	
 	user:new models.user(db),
 	lake:new models.lake(db),
@@ -40,7 +46,7 @@ app.models = {
 }
 
 app.controllers = {
-	homePages:new web.controllers.homePages(app, express),
+	homePages:new controllers.homePages(app, express),
 	
 	users:new controllers.users(app, express),
 	user_emails:new controllers.user_emails(app, express),
@@ -50,11 +56,16 @@ app.controllers = {
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.engine('html', require('ejs').renderFile);
+//app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars'); 
 app.set('view engine', 'jade');
+app.set('view engine', 'html');
 
+//app.configure('development', function () { app.locals.pretty = true; });
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

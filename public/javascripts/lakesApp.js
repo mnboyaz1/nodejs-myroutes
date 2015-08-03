@@ -1,0 +1,1 @@
+var lakesApp = angular.module("lakesApp", []);

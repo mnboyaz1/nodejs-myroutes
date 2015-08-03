@@ -1,0 +1,41 @@
+extends layout
+script(src='mainApp.js')
+script(src='homeController.js')
+block content
+  
+
+
+  .nav
+    .container
+        br
+        br
+    .pull-left
+        ul.nav.nav-pills.centered
+          li
+            a(href='#') Blog Page
+          li
+            a(href="#") Contact Us        
+                  
+          li
+            a(href='http://www.minnesotalakes.net/') Browse
+    .pull-right       
+        ul.nav.nav-pills
+          li
+            a(href='#') Sign Up
+                  
+          li
+            a(href='#') Log In
+                  
+          li
+            a(href='#') Help
+  h1= title
+  h3 Find that perfect Fish'n Hole	
+  <div ng-app="" ng-init="countries=[{locale:'en-US',name:'United States'},
+  {locale:'en-GB',name:'United Kingdom'},
+  {locale:'en-FR',name:'France'}]">
+  h2 {{home.pageName}}
+  
+  div(ng-repeat='element in elements')
+  p {{ element.name }}
+
+block content

@@ -5,6 +5,11 @@ var controller = function(app, express) {
 		self.route = express.Router();
 
 		// Declare lakes route 
+		self.route.get('/', function(req,res) {
+			app.models.lake.get(req.body, function(data) {
+				res.status(data.status).send(data.message)
+			});
+		})
 		self.route.get('/:lakeId', function(req,res) {
 			app.models.lake.find(req.params.lakeId, function(data){
 				res.status(data.status).send(data.message)

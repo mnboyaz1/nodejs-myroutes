@@ -17,6 +17,8 @@
 	"superagent": "*",
 	"expect.js": "*",
 	"mysql" : "*",
-	"chance" : "*"
+	"chance" : "*",
+	"express3-handlebars" : "*",
+	"ejs" : "*"
   }
 }

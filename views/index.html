@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Fish'n Around</title>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
+<link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css"></link>
+<link rel='stylesheet', href='/stylesheets/style.css'></link>
+
+<script src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js'></script>
+
+<script src="javascripts/mainApp.js"></script>
+<script src= "javascripts/homeController.js"></script>
+<script src= "javascripts/lakesApp.js"></script>
+<script src= "javascripts/lakesController.js"></script>
+
+
+<style>
+</style>
+</head>
+<body>
+	<div nav>
+		<div class ="container">
+			<div>
+				<ul class="nav nav-pills pull-left">
+					<li class="active">
+						<a href='#'>Blog Page</a>
+					</li>
+					<li>
+						<a href="#">Contact Us</a>
+					</li>
+					<li>
+						<a href='http://www.minnesotalakes.net/'>Browse</a>
+					</li>
+				</ul>
+			</div>
+			<div>       
+				<ul class="nav nav-pills pull-right">
+					<li class="active">
+						<a href='#'>Sign Up</a>
+					</li>
+					<li>
+						<a href='#'>Log In</a>
+					</li>
+					<li>
+						<a href='#'>Help</a>
+					</li>	
+				</ul>
+			</div>		
+		</div>
+	</div>
+
+<!--
+	<div ng-app="mainApp" ng-controller="homeController">
+		<h1>{{home.pageName}}</h1>
+
+		<p>List of Fishing Elements</p>
+		<ol>
+			<li ng-repeat="element in home.elements">
+				{{ element.name }}
+			</li>
+		</ol>
+	</div>
+-->
+	<div ng-app="lakesApp" ng-controller="lakesController">
+		<h1>{{pageName}}</h1>
+		<h3>List of Lakes</h3>
+		<ol>
+			<div>
+				<ul ng-repeat="lake in lakes">
+					{{lake.title}} Lake,
+				<br></br>
+					{{lake.description }}
+				<br></br>
+				</ul>
+			</div>
+		</ol>
+	</div>
+
+</body>
+</html>
