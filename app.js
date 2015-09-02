@@ -6,15 +6,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
 var db = require(__dirname+'/helpers/db');
-//var http = require('http');
+
 var exphbs = require('express3-handlebars');
 
 //create models and controllers
 var models = {
-	//home
-	//homePage:require(__dirname+''),
-	
 	user:require(__dirname+'/models/user'),
 	lake:require(__dirname+'/models/lake'),
 	user_email:require(__dirname+'/models/user_email'),
@@ -22,7 +20,6 @@ var models = {
 }
 
 var controllers = {
-	//home
 	homePages:require(__dirname+'/web/controllers/homePages'),
 	
 	users:require(__dirname+'/controllers/users'),

@@ -5,6 +5,12 @@ var controller = function(app, express) {
 		self.route = express.Router();
 
 		// Declare user_emails routes 
+		self.route.get('/', function(req,res) {
+			app.models.user_email.get(req.body, function(data) {
+				res.status(data.status).send(data.message)
+			});
+		})
+		
 		self.route.get('/:userId', function(req,res) {
 			app.models.user_email.find(req.params.userId, function(data){
 				res.status(data.status).send(data.message)

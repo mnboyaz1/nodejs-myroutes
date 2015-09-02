@@ -19,6 +19,7 @@
 	"mysql" : "*",
 	"chance" : "*",
 	"express3-handlebars" : "*",
-	"ejs" : "*"
+	"ejs" : "*",
+	"angular-filter" : "*"
   }
 }

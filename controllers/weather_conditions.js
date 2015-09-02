@@ -5,6 +5,12 @@ var controller = function(app, express) {
 		self.route = express.Router();
 
 		// Declare Weather Conditions route 
+		self.route.get('/', function(req,res) {
+			app.models.weather_condition.get(req.body, function(data) {
+				res.status(data.status).send(data.message)
+			});
+		})
+		
 		self.route.get('/:userId', function(req,res) {
 			app.models.weather_condition.find(req.params.userId, function(data){
 				res.status(data.status).send(data.message)

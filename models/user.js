@@ -22,6 +22,23 @@ var model = function(db) {
 			
 	}
 	
+	self.get = function(data,callback) {
+		//Execute Query
+		var query = 'select * from ??';
+		var params=[
+			self.table
+		]
+		db.query(query,params, function(err,data){
+			//send data using callback(data)
+			if(err)
+				callback({status:400,message:err.message})
+			else if (!data.length)
+				callback ({status:404,message:"Not Found"})
+			else 
+				callback({status:200,message:data})
+		})
+	}
+	
 	self.post = function(data,callback) {
 		// Execute SQL Query
 		var query = "insert into users set ?";

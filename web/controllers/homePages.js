@@ -6,7 +6,11 @@ var controller = function(app, express) {
 	
 		self.route.get('/', function(req, res) {
 	
-			res.render('index',{title:"Fish'n Around"});
+			res.render('home',{title:"Fish'n Around"});
+		});
+		
+		self.route.get('/signup', function(req,res){
+			res.render('signup',{title:"Sign Up"});
 		});
 
 

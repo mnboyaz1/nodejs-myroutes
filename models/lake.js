@@ -23,7 +23,7 @@ var model = function(db) {
 	
 	self.get = function(data,callback) {
 		//Execute Query
-		var query = 'select * from ??';
+		var query = 'select l.title, l.description, wc.weather from weather_conditions as wc inner join ?? as l on l.id = wc.lakeId GROUP BY l.description';
 		var params=[
 			self.table
 		]

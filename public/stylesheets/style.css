@@ -1,6 +1,24 @@
+.container {
+	border-bottom: solid;
+	border-right: solid;
+	border-color: gray;
+	background-color: #CCE6FF;
+}
+
+.active{
+	background-color: #E0E0E0;
+}
+.nav-pills {
+	border: solid;
+	border-right: solid;
+	border-color: #E0E0E0;
+	padding: 10px;
+}
 body {
-  padding: 50px;
+  padding: 5px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #E0E0E0;
+  
 }
 
 a {

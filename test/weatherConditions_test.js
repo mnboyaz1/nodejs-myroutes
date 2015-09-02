@@ -15,11 +15,11 @@ it('start node server.', function(done) {
 		done();
 	})
 });
-
+/*
 it('Add New Weather Conditions.', function(done) {
 	var weatherCondition = {
 		weather: chance.paragraph({sentences: 2}),
-		lakeid: 2,
+		lakeid: 5,
 	};
 	request
 	.post(host+':'+port+'/weather_conditions')
@@ -34,6 +34,7 @@ it('Add New Weather Conditions.', function(done) {
 	});
 	
 });
+*/
 
 it('Put Change Weather Conditions.', function(done) {
 	var weatherCondition = {
@@ -41,30 +42,31 @@ it('Put Change Weather Conditions.', function(done) {
 		lakeid: 3,
 	};
 	request
-	.put(host+':'+port+'/weather_conditions/2')
+	.put(host+':'+port+'/weather_conditions/3')
 	.set('Content-type','application/json')
 	.send(weatherCondition)
 	.end(function(err,res) {
 		expect(res.type).to.be('application/json');
-		expect(res.body.id).to.equal(2);
+		expect(res.body.id).to.equal(3);
 		expect(res.body.weather).to.equal(weatherCondition.weather);
 		done();
 	});
 	
 });
-
+/*
 it('Delete Weather Conditions.', function(done) {
 	var weatherCondition = {
-		id: 11,
+		id: 4,
 	};
 	request
-	.del(host+':'+port+'/weather_conditions/11')
+	.del(host+':'+port+'/weather_conditions/4')
 	.set('Content-type','application/json')
 	.send(weatherCondition)
 	.end(function(err,res) {
 		expect(res.type).to.not.be('application/json');
-		expect(weatherCondition.id).to.equal(11);
+		expect(weatherCondition.id).to.equal(4);
 		done();
 	});
 	
 });
+*/
